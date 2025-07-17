@@ -6,7 +6,11 @@
 }
 
 body {
-    margin: 50px;
+    margin: 25px;
+}
+
+.rearrange-button {
+    margin-bottom: 25px;
 }
 
 .container {
