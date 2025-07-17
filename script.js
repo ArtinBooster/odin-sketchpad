@@ -1,4 +1,4 @@
-const htmlBody = document.querySelector("body");
+const theScale = document.querySelector("#the-scale");
 const rearrangeButton = document.querySelector(".rearrange-button");
 let numberOfRows = 16;
 let containers;
@@ -17,7 +17,7 @@ function fillTheScale() {
             newContainer.appendChild(newSquare);
         }
         // The new container gets appended to the body tag in "index.HTML"
-        htmlBody.appendChild(newContainer);
+        theScale.appendChild(newContainer);
     }
     containers = document.querySelectorAll(".container");
     squares = document.querySelectorAll(".square");
@@ -33,7 +33,7 @@ function makeTheSquaresBlackWhenHovered() {
 function emptyTheScale() {
     for (let a = 0; a < numberOfRows; a++) {
         const currentContainer = containers[a];
-        htmlBody.removeChild(currentContainer);
+        theScale.removeChild(currentContainer);
     }
 }
 function getTheNewNumberOfRows() {
