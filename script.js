@@ -35,7 +35,7 @@ function getRandomNumberForRGBValue() {
     const randomNumber = Math.floor(Math.random() * (255 + 1));
     return randomNumber;
 }
-function makeTheSquaresBlackWhenHovered() {
+function paintTheSquaresWhenHovered() {
     for (let i = 0; i < squares.length; i++) {
         const currentSquare = squares[i];
         const currentSquareInfo = squaresInfo[i];
@@ -80,12 +80,12 @@ function rearrange() {
 // The scale gets filled with the default "numberOfRows"
 fillTheScale();
 updateSquaresInfo();
-makeTheSquaresBlackWhenHovered();
+paintTheSquaresWhenHovered();
 // The scale gets reset when user clicks on "rearrangeButton"
 rearrangeButton.addEventListener("click", () => {
     emptyTheScale();
     rearrange();
     fillTheScale();
     updateSquaresInfo();
-    makeTheSquaresBlackWhenHovered();
+    paintTheSquaresWhenHovered();
 })
