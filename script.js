@@ -55,8 +55,8 @@ function paintTheSquaresWhenHovered() {
     }
 }
 function emptyTheScale() {
-    for (let a = 0; a < numberOfRows; a++) {
-        const currentContainer = containers[a];
+    for (let i = 0; i < numberOfRows; i++) {
+        const currentContainer = containers[i];
         theScale.removeChild(currentContainer);
     }
 }
