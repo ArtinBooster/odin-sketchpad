@@ -1,6 +1,7 @@
 const theScale = document.querySelector("#the-scale");
 const rearrangeButton = document.querySelector(".rearrange-button");
 let numberOfRows = 16;
+let squaresInfo = [];
 let containers;
 let squares;
 
@@ -21,6 +22,13 @@ function fillTheScale() {
     }
     containers = document.querySelectorAll(".container");
     squares = document.querySelectorAll(".square");
+    // "Squares" gets converted from a NodeList to an Array
+    squares = Array.from(squares);
+}
+function updateSquaresInfo() {
+    for (let i = 0; i < squares.length; i++) {
+        squaresInfo[i] = {timesGotTouched: 0};
+    }
 }
 function getRandomNumberForRGBValue() {
     // This random number will be a number from 0 to 255
@@ -30,9 +38,16 @@ function getRandomNumberForRGBValue() {
 function makeTheSquaresBlackWhenHovered() {
     for (let i = 0; i < squares.length; i++) {
         const currentSquare = squares[i];
+        const currentSquareInfo = squaresInfo[i];
         currentSquare.addEventListener("mouseover", () => {
+            currentSquareInfo.timesGotTouched += 1;
             const randomColor = `rgb(${getRandomNumberForRGBValue()}, ${getRandomNumberForRGBValue()}, ${getRandomNumberForRGBValue()})`
-            currentSquare.style.backgroundColor = randomColor;
+            currentSquare.style.backgroundColor = randomColor;            
+            // Every time a square gets hovered over, it gets clearer. (It will be completely clear after 10th times.)
+            if (currentSquareInfo.timesGotTouched <= 10) {
+                const newOpacityPercentage = `${currentSquareInfo.timesGotTouched * 10}%`;
+                currentSquare.style.opacity = newOpacityPercentage;
+            }
         })
     }
 }
@@ -61,11 +76,13 @@ function rearrange() {
 
 // The scale gets filled with the default "numberOfRows"
 fillTheScale();
+updateSquaresInfo();
 makeTheSquaresBlackWhenHovered();
 // The scale gets reset when user clicks on "rearrangeButton"
 rearrangeButton.addEventListener("click", () => {
     emptyTheScale();
     rearrange();
     fillTheScale();
+    updateSquaresInfo();
     makeTheSquaresBlackWhenHovered();
 })
