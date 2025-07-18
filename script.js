@@ -22,11 +22,17 @@ function fillTheScale() {
     containers = document.querySelectorAll(".container");
     squares = document.querySelectorAll(".square");
 }
+function getRandomNumberForRGBValue() {
+    // This random number will be a number from 0 to 255
+    const randomNumber = Math.floor(Math.random() * (255 + 1));
+    return randomNumber;
+}
 function makeTheSquaresBlackWhenHovered() {
-        for (let i = 0; i < squares.length; i++) {
+    for (let i = 0; i < squares.length; i++) {
         const currentSquare = squares[i];
         currentSquare.addEventListener("mouseover", () => {
-            currentSquare.style.backgroundColor = "black";
+            const randomColor = `rgb(${getRandomNumberForRGBValue()}, ${getRandomNumberForRGBValue()}, ${getRandomNumberForRGBValue()})`
+            currentSquare.style.backgroundColor = randomColor;
         })
     }
 }
