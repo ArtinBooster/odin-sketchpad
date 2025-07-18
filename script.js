@@ -41,8 +41,11 @@ function makeTheSquaresBlackWhenHovered() {
         const currentSquareInfo = squaresInfo[i];
         currentSquare.addEventListener("mouseover", () => {
             currentSquareInfo.timesGotTouched += 1;
-            const randomColor = `rgb(${getRandomNumberForRGBValue()}, ${getRandomNumberForRGBValue()}, ${getRandomNumberForRGBValue()})`
-            currentSquare.style.backgroundColor = randomColor;            
+            // The first time a square gets hovered over, it gets a random background color
+            if (currentSquareInfo.timesGotTouched == 1) {
+                const randomColor = `rgb(${getRandomNumberForRGBValue()}, ${getRandomNumberForRGBValue()}, ${getRandomNumberForRGBValue()})`
+                currentSquare.style.backgroundColor = randomColor;
+            }
             // Every time a square gets hovered over, it gets clearer. (It will be completely clear after 10th times.)
             if (currentSquareInfo.timesGotTouched <= 10) {
                 const newOpacityPercentage = `${currentSquareInfo.timesGotTouched * 10}%`;
